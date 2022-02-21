@@ -1,7 +1,6 @@
 package com.generation.blogpessoal.controller;
 
 import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +26,10 @@ public class PostagemController {
 	
 	@Autowired
 	private PostagemRepository postagemRepository;
-	
+
+
 	@GetMapping
-	public ResponseEntity <List<Postagem>> getAll(){
+	public ResponseEntity<List<Postagem>> getAll(){
 		return ResponseEntity.ok(postagemRepository.findAll());
 	}
 	
@@ -38,7 +38,7 @@ public class PostagemController {
 	{ 
 		return postagemRepository.findById(id)
 				.map(resposta -> ResponseEntity.ok(resposta))
-				.orElse(ResponseEntity.notFound(). build());
+				.orElse(ResponseEntity.notFound().build());
 		
 	}
 	
@@ -49,21 +49,14 @@ public class PostagemController {
 	
 	
 	@PostMapping
-	public ResponseEntity<Postagem> postPostagem (@Valid @RequestBody Postagem postagem)
+	public ResponseEntity<Postagem> postPostagem(@Valid @RequestBody Postagem postagem)
 	{ 
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(postagemRepository.save(postagem));
 	}
 	
-	/*@PutMapping
-	public ResponseEntity<Postagem> putPostagem (@Valid @RequestBody Postagem postagem)
-	{ 
-		return ResponseEntity.status(HttpStatus.OK)
-				.body(postagemRepository.save(postagem));
-	}
-	*/
 	
-	@PutMapping(value = "/{id}")
+	/*@PutMapping(value = "/{id}")
 	public ResponseEntity<Postagem> putPostagem (@PathVariable("id") Long id, @Valid @RequestBody Postagem postagem)
 	{ 
 		return postagemRepository.findById(id).map (record -> {
@@ -74,14 +67,18 @@ public class PostagemController {
 				return ResponseEntity.status(HttpStatus.OK).body(updat);})
 				
 		.orElse(ResponseEntity.notFound().build());	
-	}
+	}*/
 		
-	/*@GetMapping("/{id}")
-	public ResponseEntity<Postagem> getById(@PathVariable Long id)
+	@PutMapping //Atualização alternativa
+	public ResponseEntity<Postagem> putPostagem(@Valid @RequestBody Postagem postagem)
 	{ 
-		return postagemRepository.findById(id)
-				.map(resposta -> ResponseEntity.ok(resposta))
-				.orElse(ResponseEntity.notFound(). build());	*/
+		return postagemRepository.findById(postagem.getId())
+				.map(resposta -> ResponseEntity.ok().body(postagemRepository.save(postagem)))
+				.orElse(ResponseEntity.notFound().build());	
+	}
+	
+	
+	
 	
 	@DeleteMapping(path = "/{id}")
 	public  ResponseEntity<?> deletePostagem(@PathVariable Long id) 
@@ -91,20 +88,27 @@ public class PostagemController {
 	            return ResponseEntity.status(HttpStatus.OK).build();})
 	        	.orElse(ResponseEntity.notFound().build());	
 	}
-				
-		
-				
-				
-				
-		
-
 	
+	/*@DeleteMapping("/{id}")
+	public ResponseEntity<?> deletePostagem(@PathVariable Long id) {
 		
-		
-		
+		return postagemRepository.findById(id)
+				.map(resposta -> {
+					postagemRepository.deleteById(id);
+					return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+				})
+				.orElse(ResponseEntity.notFound().build());
+	}*/
 	
+	/*@DeleteMapping(/{id}) //Versão alternativa E funcional
+	  @ResponseStatus(value = HttpStatus.NO_CONTENT)
+	public void deletePostagem(@PathVariable Long id) 
+	{
+	            postagemRepository.deleteById(id);	
+	}*/
+				
 	
-	/*@DeleteMapping(path = "/{id}")
+	/*@DeleteMapping(path = "/{id}") //Sem retorno
 	public void deletePostagem(@PathVariable Long id)
 	{ 
 		postagemRepository.deleteById(id);
