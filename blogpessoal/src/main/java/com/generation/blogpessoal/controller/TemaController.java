@@ -2,7 +2,6 @@ package com.generation.blogpessoal.controller;
 
 import java.util.List;
 
-import javax.persistence.OneToMany;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
