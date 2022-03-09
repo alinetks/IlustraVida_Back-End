@@ -42,9 +42,8 @@ public class Usuario {
 	private List<Postagem> postagem;
 	
 	
-	  //Parâmetros
+	  //Parâmetros para o método contrutor
 	 
-	
 	public Usuario(Long id, String nome, String usuario, String senha, String foto) {
 		this.id = id;
 		this.nome = nome;
@@ -53,9 +52,11 @@ public class Usuario {
 		this.foto = foto;
 	}
 	
+	//Construtor vazio
+	public Usuario() { }
+	
 	//Get and Set 
 	
-	public Usuario() { }
 	
 	public Long getId() {
 		return id;

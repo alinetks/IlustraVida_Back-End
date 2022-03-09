@@ -14,6 +14,18 @@ public class UsuarioLogin {
 	
 	private String token;
 
+	public UsuarioLogin() {
+		// TODO Auto-generated constructor stub
+	}
+	public UsuarioLogin( String nome, String usuario, String senha, String foto ) {
+		// TODO Auto-generated constructor stub
+		this.nome = nome;
+		this.usuario = usuario;
+		this.senha = senha;
+		this.foto = foto;
+	}
+	
+
 	public Long getId() {
 		return id;
 	}
