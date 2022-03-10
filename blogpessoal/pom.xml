@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.generation</groupId>
-	<artifactId>BlogPessoal</artifactId>
+	<artifactId>blogpessoal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>BlogPessoal</name>
-	<description>Projeto Blog Pessoal</description>
+	<name>blogpessoal</name>
+	<description>Blog Pessoal</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -30,11 +30,17 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<!-- Dependência Spring Security -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.3</version>
+		</dependency>
+		<!-- Dependência para Codificação do Token -->
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
@@ -50,6 +56,10 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
